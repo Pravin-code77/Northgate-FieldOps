@@ -1,25 +1,61 @@
 {
   "expo": {
-    "name": "temp-app",
-    "slug": "temp-app",
+    "name": "FieldOps Mobile",
+    "slug": "fieldops-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.northgate.fieldops",
+      "infoPlist": {
+        "NSCameraUsageDescription": "FieldOps Mobile requires camera access to capture before-and-after equipment inspection photos for work order records.",
+        "NSLocationWhenInUseUsageDescription": "FieldOps Mobile requires GPS location to verify engineer proximity to industrial assets before starting and completing work orders.",
+        "NSFaceIDUsageDescription": "FieldOps Mobile uses Face ID for secure local engineer authentication."
+      }
     },
     "android": {
+      "package": "com.northgate.fieldops",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#1749B8",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT"
+      ],
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "FieldOps Mobile needs camera access to record before and after equipment maintenance photos."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "FieldOps Mobile needs GPS to verify proximity to industrial equipment."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "FieldOps Mobile uses biometric authentication to secure access to work orders."
+        }
+      ],
+      "expo-sqlite",
+      "expo-secure-store"
+    ]
   }
 }
